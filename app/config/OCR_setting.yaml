@@ -1,0 +1,38 @@
+project:
+  name: 明代别集数据库-OCR
+  batch_name: 20260420
+
+paths:
+  input_dir: F:/大数据中心/待OCR图片
+  work_dir: F:/大数据中心/OCR_work
+  output_dir: F:/大数据中心/OCR_output
+  error_dir: F:/大数据中心/OCR_error
+  log_dir: logs
+  state_file: runtime/ocr_state.json
+
+ocr:
+  url: http://192.168.10.166:20096/query
+  threads: 8
+  timeout: 60
+  retry: 3
+  skip_existing: true
+
+image:
+  allow_ext:
+    - .jpg
+    - .jpeg
+    - .png
+    - .tif
+    - .tiff
+
+quality:
+  min_confidence: 0.80
+  min_char_count: 10
+
+steps:
+  prepare_images: true
+  call_ocr: true
+  save_error_pages: true
+  count_chars: true
+  confidence_check: true
+  export_report: true
